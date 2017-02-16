@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function(){
     var loader = document.getElementsByClassName('spinner')[0];
     var loaderCounter = document.getElementById('loaderNumber');
 
-    clock.innerText = "60";
+    clock.innerText = "30";
     counter.innerText = "0";
     loaderCounter.innerText = "3";
     timerText.style.display = "block";
@@ -58,9 +58,9 @@ document.addEventListener("DOMContentLoaded", function(){
       var randomSide = Math.floor((Math.random() * 4) + 1);
 
       for (var i = 0; i < 10; i++){
-        var randomSize = Math.floor((Math.random() * 70) + 40) + "px";
-        var randomPositionX = Math.floor((Math.random() * 1000) + 1) + "px";
-        var randomPositionY = Math.floor((Math.random() * 700) + 1) + "px";
+        var randomSize = Math.floor((Math.random() * 90) + 50) + "px";
+        var randomPositionX = Math.floor((Math.random() * 95) + 5) + "%";
+        var randomPositionY = Math.floor((Math.random() * 95) + 5) + "%";
         var randomMove = Math.floor((Math.random() * 4) + 1);
 
         var newBall = document.createElement("div");
