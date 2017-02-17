@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function(){
     counterText.style.display = "block";
     loader.style.display = "block";
     loaderCounter.style.display = "block";
-    container.style.backgroundImage = "url(images/white.jpg)";
+    container.style.backgroundImage = "url(images/clouds2.jpg)";
     title.style.display = "none";
     startButton.style.display = "none";
     document.getElementById('gameOver').style.display = "none";
@@ -75,7 +75,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
         if (randomSide == 1){
           newBall.style.backgroundColor = "rgb(0," + color + ",0)";
-          newBall.style.top = "-100px";
+          newBall.style.top = "-10%";
           newBall.style.left = randomPositionX;
 
           if (randomMove == 1){
@@ -97,7 +97,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         else if (randomSide == 2){
           newBall.style.backgroundColor = "rgb(" + color + ", 0, 0)";
-          newBall.style.left = "1100px";
+          newBall.style.left = "110%";
           newBall.style.top = randomPositionY;
 
           if (randomMove == 1){
@@ -119,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         else if (randomSide == 3){
           newBall.style.backgroundColor = "rgb(0, 0," + color + ")";
-          newBall.style.top = "800px";
+          newBall.style.top = "110%";
           newBall.style.left = randomPositionX;
 
           if (randomMove == 1){
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         else if (randomSide == 4){
           newBall.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-          newBall.style.left = "-100px";
+          newBall.style.left = "-10%";
           newBall.style.top = randomPositionY;
 
           if (randomMove == 1){
@@ -178,7 +178,7 @@ document.addEventListener("DOMContentLoaded", function(){
         var gameOver = document.getElementById('gameOver');
         var result = document.getElementById("result");
 
-        for (var i = 1; i < 99999; i++)
+        for (var i = 1; i < 9999; i++)
           window.clearInterval(i);
 
         while (ball.length > 0){
