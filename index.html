@@ -10,20 +10,51 @@
 </head>
 <body>
   <div class="container">
-    <h1>Crazy Balloons</h1>
-    <div id="start">START GAME</div>
-    <div class="timer">Time: <span id="time"></span></div>
-    <div class="counter">Shooted balloons: <span></span></div>
-    <div class="spinner"></div>
-    <p id="loaderNumber"></p>
-    <div id="gameOver" class="gameOverText">
+    <div class="menuContainer show">
+      <h1 id="gameTitle" class="menuText">Crazy Balloons</h1>
+      <div id="start" class="menuText">START GAME</div>
+      <div id="highscore" class="menuText">HIGHSCORE</div>
+    </div>
+    <div class="highscoreScreen">
+      <div class="menuText top">TOP10</div>
+      <div class="highScoreLists">
+        <ul id="highscoreNames">
+
+        </ul>
+        <ul id="highscoreResults">
+
+        </ul>
+      </div>
+      <div class="back menuText">BACK</div>
+    </div>
+    <div class="panelInfo">
+      <div class="timer">Time: <span id="time"></span></div>
+      <div class="counter">Shooted balloons: <span></span></div>
+      <div class="spinnerContainer">
+        <div class="spinner"></div>
+        <p id="loaderNumber"></p>
+      </div>
+    </div>
+    <div id="gameOver" class="gameOverText hide">
       GAME OVER
       <br>Your result:
       <span id="result"></span>
+      <div class="input">
+        <input id="inputName" type="text" placeholder="your name">
+        <span id="tip"></span>
+        <div class="saveResult">
+          SAVE
+        </div>
+      </div>
     </div>
-    <div class="again gameOverText">Play again</div>
-    <div class="exit gameOverText">Exit</div>
+    <div class="gameOverBtns">
+      <div class="again gameOverText">Play again</div>
+      <div class="exit gameOverText">Exit</div>
+    </div>
   </div>
+
+<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.6.9/firebase-database.js"></script>
 <script src="js/app.js" type="text/javascript"></script>
 </body>
 </html>
