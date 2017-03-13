@@ -85,9 +85,12 @@ document.addEventListener("DOMContentLoaded", function(){
     tip.innerText = "";
     tip.style.color = "red";
 
+    //count to three
     setTimeout(function(){
       interval1 = setInterval(timer, 1000);
     }, 3000);
+    var countSound = document.getElementsByTagName("audio")[0];
+    countSound.play();
     var interval2 = setInterval(countToThree, 1000);
     interval3 = setInterval(createBalloons, 4000);
 
@@ -241,6 +244,8 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function hide(){
+      var popSound = document.getElementsByTagName("audio")[1];
+      popSound.play();
       this.parentNode.removeChild(this);
       counter.innerText = Number(counter.innerText) + Number(this.dataset.value);
     }
