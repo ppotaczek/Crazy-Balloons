@@ -104,6 +104,61 @@ document.addEventListener("DOMContentLoaded", function(){
         }, 1000);
       }
     }
+
+    var CreateNewBalloon = function(ballSide, ballSize, ballRandX, ballRandY, ballMove, ballColor){
+      this.side = ballSide;
+      this.size = ballSize;
+      this.randX = ballRandX;
+      this.randY = ballRandY;
+      this.move = ballMove;
+      this.color = ballColor
+    }
+
+    CreateNewBalloon.prototype.ballMoveDown = function(thisBall){
+      thisBall.style.backgroundColor = "rgb(0," + this.color + ",0)";
+      thisBall.style.top = "-10%";
+      thisBall.style.left = this.randX;
+      thisBall.classList.add("animation-" + this.move + "-top");
+    }
+
+    CreateNewBalloon.prototype.ballMoveLeft = function(thisBall){
+      thisBall.style.backgroundColor = "rgb(" + this.color + ", 0, 0)";
+      thisBall.style.left = "110%";
+      thisBall.style.top = this.randY;
+      thisBall.classList.add("animation-" + this.move + "-right");
+    }
+
+    CreateNewBalloon.prototype.ballMoveUp = function(thisBall){
+      thisBall.style.backgroundColor = "rgb(0, 0," + this.color + ")";
+      thisBall.style.top = "110%";
+      thisBall.style.left = this.randX;
+      thisBall.classList.add("animation-" + this.move + "-bottom");
+    }
+
+    CreateNewBalloon.prototype.ballMoveRight = function(thisBall){
+      thisBall.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+      thisBall.style.left = "-10%";
+      thisBall.style.top = this.randY;
+      thisBall.classList.add("animation-" + this.move + "-left");
+    }
+
+    CreateNewBalloon.prototype.appendToPage = function(thisBall){
+      container.appendChild(thisBall);
+      thisBall.addEventListener("animationend", this.deleteBall, false);
+      thisBall.addEventListener("click", this.hide);
+    }
+
+    CreateNewBalloon.prototype.hide = function(event){
+      var popSound = document.getElementsByTagName("audio")[1];
+      popSound.play();
+      this.parentNode.removeChild(this);
+      counter.innerText = Number(counter.innerText) + Number(this.dataset.value);
+    }
+
+    CreateNewBalloon.prototype.deleteBall = function(event){
+      this.parentNode.removeChild(this);
+    }
+
     function createBalloons(){
       var randomSide = Math.floor((Math.random() * 4) + 1);
 
@@ -120,105 +175,30 @@ document.addEventListener("DOMContentLoaded", function(){
         var min = 100;
         var color = Math.floor(Math.random() * (max - min + 1)) + min;
 
-        newBall.style.width = randomSize;
-        newBall.style.height = randomSize;
+        var ballObj = new CreateNewBalloon(randomSide, randomSize, randomPositionX, randomPositionY, randomMove, color);
 
-        if (randomSide == 1){
-          newBall.style.backgroundColor = "rgb(0," + color + ",0)";
-          newBall.style.top = "-10%";
-          newBall.style.left = randomPositionX;
+        newBall.style.width = ballObj.size;
+        newBall.style.height = ballObj.size;
+        newBall.dataset.value = ballObj.move;
 
-          if (randomMove == 1){
-            newBall.classList.add("animation-1-top");
-            newBall.dataset.value = 1;
-          }
-          else if (randomMove == 2){
-            newBall.classList.add("animation-2-top");
-            newBall.dataset.value = 3;
-          }
-          else if (randomMove == 3){
-            newBall.classList.add("animation-3-top");
-            newBall.dataset.value = 2;
-          }
-          else if (randomMove == 4){
-            newBall.classList.add("animation-4-top");
-            newBall.dataset.value = 4;
-          }
+        switch(randomSide){
+          case 1:
+            ballObj.ballMoveDown(newBall);
+            break;
+          case 2:
+            ballObj.ballMoveLeft(newBall);
+            break;
+          case 3:
+            ballObj.ballMoveUp(newBall);
+            break;
+          case 4:
+            ballObj.ballMoveRight(newBall);
+            break;
         }
-        else if (randomSide == 2){
-          newBall.style.backgroundColor = "rgb(" + color + ", 0, 0)";
-          newBall.style.left = "110%";
-          newBall.style.top = randomPositionY;
-
-          if (randomMove == 1){
-            newBall.classList.add("animation-1-right");
-            newBall.dataset.value = 1;
-          }
-          else if (randomMove == 2){
-            newBall.classList.add("animation-2-right");
-            newBall.dataset.value = 3;
-          }
-          else if (randomMove == 3){
-            newBall.classList.add("animation-3-right");
-            newBall.dataset.value = 2;
-          }
-          else if (randomMove == 4){
-            newBall.classList.add("animation-4-right");
-            newBall.dataset.value = 4;
-          }
-        }
-        else if (randomSide == 3){
-          newBall.style.backgroundColor = "rgb(0, 0," + color + ")";
-          newBall.style.top = "110%";
-          newBall.style.left = randomPositionX;
-
-          if (randomMove == 1){
-            newBall.classList.add("animation-1-bottom");
-            newBall.dataset.value = 1;
-          }
-          else if (randomMove == 2){
-            newBall.classList.add("animation-2-bottom");
-            newBall.dataset.value = 3;
-          }
-          else if (randomMove == 3){
-            newBall.classList.add("animation-3-bottom");
-            newBall.dataset.value = 2;
-          }
-          else if (randomMove == 4){
-            newBall.classList.add("animation-4-bottom");
-            newBall.dataset.value = 4;
-          }
-        }
-        else if (randomSide == 4){
-          newBall.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-          newBall.style.left = "-10%";
-          newBall.style.top = randomPositionY;
-
-          if (randomMove == 1){
-            newBall.classList.add("animation-1-left");
-            newBall.dataset.value = 1;
-          }
-          else if (randomMove == 2){
-            newBall.classList.add("animation-2-left");
-            newBall.dataset.value = 3;
-          }
-          else if (randomMove == 3){
-            newBall.classList.add("animation-3-left");
-            newBall.dataset.value = 2;
-          }
-          else if (randomMove == 4){
-            newBall.classList.add("animation-4-left");
-            newBall.dataset.value = 4;
-          }
-        }
-
-        container.appendChild(newBall);
-      }
-      for (var i = 0; i < document.getElementsByClassName('ball').length; i++){
-        document.getElementsByClassName('ball')[i].addEventListener("click", hide);
-        document.getElementsByClassName('ball')[i].addEventListener("animationend", deleteBall, false);
+        ballObj.appendToPage(newBall);
       }
     }
+
     function timer(){
       var clock = document.getElementById('time');
       clock.innerText = Number(clock.innerText) - 1;
@@ -238,16 +218,6 @@ document.addEventListener("DOMContentLoaded", function(){
         gameOverBtns.classList.add("show");
         gameOver.classList.add("show");
       }
-    }
-    function deleteBall(){
-      this.parentNode.removeChild(this);
-    }
-
-    function hide(){
-      var popSound = document.getElementsByTagName("audio")[1];
-      popSound.play();
-      this.parentNode.removeChild(this);
-      counter.innerText = Number(counter.innerText) + Number(this.dataset.value);
     }
   }
 
