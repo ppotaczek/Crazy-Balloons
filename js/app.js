@@ -234,6 +234,9 @@ document.addEventListener("DOMContentLoaded", function(){
   function highscore(method){
     var arrKeys = [];
     var arrValues = [];
+    var finalName = document.getElementById("inputName").value;
+    var finalResult = document.getElementById("result").innerText;
+    finalResult = parseInt(finalResult);
 
     for(var key in scores){
       arrKeys.push(key);
@@ -243,11 +246,9 @@ document.addEventListener("DOMContentLoaded", function(){
     arrKeys.reverse();
     arrValues.reverse();
 
-    if (method === "add"){
+    if (method === "add" && typeof finalResult === 'number' && finalResult < 200 && finalName === document.getElementById("inputName").value){
       var results = app.database().ref();
       var finalObj = {};
-      var finalName = document.getElementById("inputName").value;
-      var finalResult = document.getElementById("result").innerText;
       arrKeys.push(finalResult);
       arrKeys.sort(function(a, b){return b-a});
 
