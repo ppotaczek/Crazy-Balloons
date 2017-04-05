@@ -4,6 +4,11 @@ document.addEventListener("DOMContentLoaded", function(){
     databaseURL: "https://crazy-balloons.firebaseio.com"
   };
   var app = firebase.initializeApp(config);
+  window.addEventListener("load",function() {
+    setTimeout(function(){
+        window.scrollTo(0, 1);
+    }, 0);
+  });
 
   var menuContainer = document.getElementsByClassName('menuContainer')[0];
   var panel =  document.getElementsByClassName('panelInfo')[0];
@@ -38,6 +43,9 @@ document.addEventListener("DOMContentLoaded", function(){
     menuContainer.classList.add("show");
     gameOverBtns.classList.remove("show");
     gameOver.classList.remove("show");
+    dom.bind(document, "touchmove", function(event) {
+      event.preventDefault();
+      });
   }
 
   function showHighscore(){
