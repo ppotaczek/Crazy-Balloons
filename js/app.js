@@ -4,12 +4,6 @@ document.addEventListener("DOMContentLoaded", function(){
     databaseURL: "https://crazy-balloons.firebaseio.com"
   };
   var app = firebase.initializeApp(config);
-  window.addEventListener("load", function() {
-    document.getElementsByTagName("html")[0].style.height = "200%";
-    setTimeout(function() {
-      window.scrollTo(0, 1);
-      }, 0);
-  });
 
   var menuContainer = document.getElementsByClassName('menuContainer')[0];
   var panel =  document.getElementsByClassName('panelInfo')[0];
